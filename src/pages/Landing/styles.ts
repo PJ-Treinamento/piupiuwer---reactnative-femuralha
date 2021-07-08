@@ -11,7 +11,7 @@ export const LogoLogin = styled.Image`
   margin-bottom: 10px;
 `
 export const NameText = styled.Text`
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   font: 700 24px 'Montserrat_700Bold';
 `
 export const LoginText = styled.Text`
@@ -62,7 +62,7 @@ export const LoginWrapper = styled.View`
   justify-content: flex-start;
   align-items: center;
   border-radius: 40px;
-  height: 60%;
+  height: 65%;
   width: 100%;
   background-color: #ffffff;
   margin-top: 56px;

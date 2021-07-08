@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react'
-import { View, Image, Text, TextInput, TextInputTextInputEventData} from 'react-native'
+import { View, Image, Text, TextInput, TextInputTextInputEventData, Button, TouchableOpacity} from 'react-native'
 import AuthContext from '../../context/auth';
 import api from '../../services/api';
 import * as s from './style'
@@ -63,7 +63,7 @@ const PiuComp: React.FC <Piu> = ({id , likes, text, user }) => {
     }
   }
   
-//Não tive tempo de acabar o fav :(
+
   
   const piuFav = async () => {
     const favResponse = await api.post('/pius/favorite',
@@ -75,14 +75,15 @@ const PiuComp: React.FC <Piu> = ({id , likes, text, user }) => {
     <s.WrapperPiu>
       <s.Piu_interaction>
         <s.ProfilePic source={{uri:user.photo}}/>
-        <View>
-          <s.Like_btn source={Likecp} />
+        <s.LikePhoto>
+          <TouchableOpacity onPress={piuLike}><s.Like_btn source={Likecp} /></TouchableOpacity>
           <s.Counter>{likes.length + likeCount}</s.Counter>
-        </View>
+        </s.LikePhoto>
+        <s.ExcButton onPress={deletePiu}><Text>exc</Text></s.ExcButton>
       </s.Piu_interaction>
       <s.ContentPiu>
         <s.UsernamePiu>{user.username}</s.UsernamePiu>
-        <Text>{text}</Text>
+        <s.TextPiu>{text}</s.TextPiu>
       </s.ContentPiu>
     </s.WrapperPiu>
   )

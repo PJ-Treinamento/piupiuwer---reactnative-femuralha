@@ -1,5 +1,4 @@
 import React, { FormEvent, useState, useContext, useCallback} from 'react'
-import { View, Image, Text, TextInput, TextInputTextInputEventData} from 'react-native'
 import * as s from './styles'
 import  AsyncStorage  from "@react-native-async-storage/async-storage";
 import LogoGalinha from '../../assets/images/Galinha.png'
@@ -11,14 +10,14 @@ function Landing(){
 
   const {setUserData} = useContext(AuthContext);	
 
-	const handleLogin = useCallback( async (cred) => {
+	const handleLogin = async () => {
       const response = await api.post('/sessions/login', { email: user1, password: password })
       const { token, user } = response.data
       AsyncStorage.setItem("@PiuPiuwer:token", token)
       AsyncStorage.setItem("@PiuPiuwer:user", JSON.stringify(user))
       setUserData(response.data)
-      console.log('hmm')
-	},[]);
+      console.log(user.username)
+	};
   const [cred, setCred] = useState({
     email:'',
     password:''
