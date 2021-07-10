@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useCallback, useContext, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity} from "react-native";
 import { TextPiu } from "../../components/piu/style";
@@ -6,6 +7,8 @@ import api from "../../services/api";
 import * as s from './style'
 
 function PiuText() {
+
+  const[ textPiu, setTextPiu] = useState('')
   const {token} = useContext(AuthContext);
   const PotsPiu = async () => {
     if(textPiu.length == 0){
@@ -18,18 +21,14 @@ function PiuText() {
       const postResponse = await api.post('/pius', {
         text: textPiu},
         {headers: { authorization: `Bearer ${token}` }})
-      const x = postResponse.data
-      console.log('oi')
-      console.log(x)
   }
-
 };
-  const[ textPiu, setTextPiu] = useState('')
+
   return(
     <s.Wrapper>
       <s.IntroText>Escreva aqui seu piu</s.IntroText>
       <s.Inputzin placeholder='No que está pensando?' value={textPiu} onChangeText={setTextPiu}/>
-      <s.Buttonzin onPress={PotsPiu}>
+      <s.Buttonzin onPress={PotsPiu} >
         <s.ButtonText>Piu</s.ButtonText>
       </s.Buttonzin>
     </s.Wrapper>

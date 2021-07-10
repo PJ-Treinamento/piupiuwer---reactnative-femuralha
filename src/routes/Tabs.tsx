@@ -11,7 +11,31 @@ function Tabs() {
 
   }
   return(
-    <Navigator tabBarOptions={{style:{elevation:0}}}>
+    <Navigator tabBarOptions={{
+      style:{
+        elevation:0,
+        shadowOpacity:0,
+        height: 88,
+        },
+      tabStyle:{
+        flexDirection:"row",
+        alignItems:"center",
+        justifyContent: 'center',
+      },
+      iconStyle:{
+        flex: 0,
+        width: 20,
+        height: 20,
+      },
+      labelStyle:{
+        fontFamily:'Montserrat_700Bold',
+        fontSize: 13,
+      },
+      inactiveBackgroundColor: '#fafafc',
+      inactiveTintColor: '#c1bccc',
+      activeTintColor: '#FFB703'
+      }}
+    >
       <Screen name='Feed' component={Feed} />
       <Screen name='Piu' component={PiuText} />
     </Navigator>

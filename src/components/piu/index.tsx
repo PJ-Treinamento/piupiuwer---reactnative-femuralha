@@ -4,6 +4,7 @@ import AuthContext from '../../context/auth';
 import api from '../../services/api';
 import * as s from './style'
 import Likecp from '../../assets/images/like.png'
+import {Ionicons} from '@expo/vector-icons'
 
 export interface Piu {
 	id: string;
@@ -76,10 +77,10 @@ const PiuComp: React.FC <Piu> = ({id , likes, text, user }) => {
       <s.Piu_interaction>
         <s.ProfilePic source={{uri:user.photo}}/>
         <s.LikePhoto>
-          <TouchableOpacity onPress={piuLike}><s.Like_btn source={Likecp} /></TouchableOpacity>
+          <TouchableOpacity onPress={piuLike}><Ionicons name="heart-outline" size={26} color="black" /></TouchableOpacity>
           <s.Counter>{likes.length + likeCount}</s.Counter>
         </s.LikePhoto>
-        <s.ExcButton onPress={deletePiu}><Text>exc</Text></s.ExcButton>
+        <s.ExcButton onPress={deletePiu}><Ionicons name="ios-trash" size={14} color="black" /></s.ExcButton>
       </s.Piu_interaction>
       <s.ContentPiu>
         <s.UsernamePiu>{user.username}</s.UsernamePiu>
