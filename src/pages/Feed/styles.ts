@@ -20,7 +20,7 @@ export const Scroll = styled.ScrollView`
 export const Inputzin = styled.TextInput`
   width: 78%;
   background-color: #F0F0F0;
-  border: solid 1px black;
+  border: solid 0.1px black;
   border-radius: 8px;
   height: 48px;
   font: 700 14px 'Montserrat_400Regular' ;

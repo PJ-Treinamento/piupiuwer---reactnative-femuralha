@@ -50,7 +50,7 @@ function Feed() {
       <s.Background>
         <View>
         <s.FlexCenter>
-            <TouchableOpacity onPress={Logout}><s.ProfilePic source={{uri:user.photo}}/></TouchableOpacity>
+            <TouchableOpacity onPress={Logout}><s.ProfilePic source={user.photo? {uri:user.photo}: {uri: 'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQp2nmdFVhAS7WCgFpdjQZgU15senpC9QCPeUH4fNnqbfcOhnpg1jsemaOZfKW8zhCtjXhvxcsGkt-GMVyiDmM'}}/></TouchableOpacity>
             <s.Inputzin 
               placeholder='Buscar...' 
               value={searchTerm} 

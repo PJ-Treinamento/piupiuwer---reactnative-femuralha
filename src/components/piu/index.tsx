@@ -75,7 +75,7 @@ const PiuComp: React.FC <Piu> = ({id , likes, text, user }) => {
   return(
     <s.WrapperPiu>
       <s.Piu_interaction>
-        <s.ProfilePic source={{uri:user.photo}}/>
+        <s.ProfilePic source={user.photo? {uri:user.photo} : {uri: 'http://t1.gstatic.com/licensed-image?q=tbn:ANd9GcQp2nmdFVhAS7WCgFpdjQZgU15senpC9QCPeUH4fNnqbfcOhnpg1jsemaOZfKW8zhCtjXhvxcsGkt-GMVyiDmM'}}/>
         <s.LikePhoto>
           <TouchableOpacity onPress={piuLike}><Ionicons name="heart-outline" size={26} color="black" /></TouchableOpacity>
           <s.Counter>{likes.length + likeCount}</s.Counter>

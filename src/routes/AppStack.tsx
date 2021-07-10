@@ -13,10 +13,11 @@ function AppStack() {
   const {signed} = useContext(AuthContext)
   return signed ?
       <NavigationContainer>
-      <Navigator screenOptions={{headerShown: true, headerStyle:{backgroundColor: '#FFB703'}, 
+      <Navigator  screenOptions={{headerShown: true, headerStyle:{backgroundColor: '#FFB703'}, 
       headerTitle:() => <Head/>}}>
         <Screen name='PiuTab' component={Tabs} />
       </Navigator>
+      
     </NavigationContainer>
     :
     <NavigationContainer>
