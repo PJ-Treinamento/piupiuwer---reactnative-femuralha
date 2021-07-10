@@ -1,28 +1,25 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, Text, RefreshControl, Image } from "react-native";
+import Landing from "../Landing";
+import { View, Text, RefreshControl, Image, TouchableOpacityBase, TouchableOpacity } from "react-native";
 import PiuComp from "../../components/piu";
 import AuthContext from "../../context/auth";
 import * as s from './styles'
 import { Piu } from '../../components/piu';
 import api from "../../services/api";
-import { TextInput } from "react-native-gesture-handler";
+import  AsyncStorage  from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
 function Feed() {
+  const { navigate } = useNavigation()
   const [refreshing, setRefreshing] = React.useState(false);
-
-  const onRefresh = async () => {
-  
-    const response = await api.get('/pius', {
-      headers: { authorization: `Bearer ${token}` }
-    })
-    setPius(response.data)
-    }
-    onRefresh()
-
-
   const [searchTerm, setSearchTerm] = useState('')
   const {token, user} = useContext(AuthContext);
   const [pius, setPius] = useState <Piu[]> ([])
+
+  function handleLogout() {
+    navigate('Landing')
+  }
+
   useEffect(() =>{
     const fetchData = async () => {
   
@@ -34,15 +31,33 @@ function Feed() {
       fetchData()
   }, [])
 
+  const onRefresh = async () => {
+  
+    const response = await api.get('/pius', {
+      headers: { authorization: `Bearer ${token}` }
+    })
+    setPius(response.data)
+    }
+    onRefresh()
+    
+  const Logout = async () =>{
+    await AsyncStorage.removeItem('@PiuPiuwer:token')
+    await AsyncStorage.removeItem('@PiuPiuwer:user')
+    handleLogout()
+  }
+
   return(
       <s.Background>
+        <View>
         <s.FlexCenter>
-          <s.Inputzin 
-            placeholder='Buscar...' 
-            value={searchTerm} 
-            onChangeText={setSearchTerm}
-          />
+            <TouchableOpacity onPress={Logout}><s.ProfilePic source={{uri:user.photo}}/></TouchableOpacity>
+            <s.Inputzin 
+              placeholder='Buscar...' 
+              value={searchTerm} 
+              onChangeText={setSearchTerm}
+            />
         </s.FlexCenter>
+        </View>
         <s.Scroll
         refreshControl={
           <RefreshControl
